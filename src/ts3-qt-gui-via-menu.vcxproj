@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{192D646D-748B-450B-AF3D-BF8EDD5FC897}</ProjectGuid>
-    <RootNamespace>basic-ts3-qt-gui</RootNamespace>
+    <RootNamespace>ts3-qt-gui-via-menu</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
-    <ProjectName>basic-ts3-qt-gui</ProjectName>
+    <ProjectName>ts3-qt-gui-via-menu</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -84,7 +84,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;basic-ts3-qt-gui_EXPORTS;WINDOWS;WIN32_LEAN_AND_MEAN;NOFMOD;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ts3-qt-gui-via-menu_EXPORTS;WINDOWS;WIN32_LEAN_AND_MEAN;NOFMOD;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
@@ -102,7 +102,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(QTDIR)\include;..\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\GeneratedFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;basic-ts3-qt-gui_EXPORTS;WINDOWS;WIN32_LEAN_AND_MEAN;NOFMOD;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS;WIN32_LEAN_AND_MEAN;NOFMOD;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -120,7 +120,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;basic-ts3-qt-gui_EXPORTS;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ts3-qt-gui-via-menu_EXPORTS;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
@@ -440,13 +440,13 @@
     <CustomBuild Include="..\include\basicdialog.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing basicdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -D_DEBUG -D_WINDOWS -D_USRDLL -Dbasic-ts3-qt-gui_EXPORTS -DWINDOWS -DWIN32_LEAN_AND_MEAN -DNOFMOD -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -D_DEBUG -D_WINDOWS -D_USRDLL -Dts3-qt-gui-via-menu_EXPORTS -DWINDOWS -DWIN32_LEAN_AND_MEAN -DNOFMOD -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing basicdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -D_DEBUG -D_WINDOWS -D_USRDLL -Dbasic-ts3-qt-gui_EXPORTS -DWINDOWS -DWIN32_LEAN_AND_MEAN -DNOFMOD -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE "-I$(QTDIR)\include" "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -D_DEBUG -D_WINDOWS -D_USRDLL -DWINDOWS -DWIN32_LEAN_AND_MEAN -DNOFMOD -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE  "-I$(QTDIR)\include" "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing basicdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DNDEBUG -D_WINDOWS -D_USRDLL -Dbasic-ts3-qt-gui_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DNDEBUG -D_WINDOWS -D_USRDLL -Dts3-qt-gui-via-menu_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing basicdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DNDEBUG -D_WINDOWS -D_USRDLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -D_WINDLL -D_UNICODE -DUNICODE  "-I.\..\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles" "-I$(QTDIR)\include"</Command>

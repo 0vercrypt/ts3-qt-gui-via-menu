@@ -13,6 +13,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include <thread>
+#include <qapplication.h>
+#include <qcoreapplication.h>
+#include <qmessagebox.h>
 #include <basicdialog.h>
 #include "teamspeak/public_errors.h"
 #include "teamspeak/public_errors_rare.h"
@@ -22,6 +26,7 @@
 #include "ts3_functions.h"
 #include "plugin.h"
 
+static char* pluginID = NULL;
 static struct TS3Functions ts3Functions;
 
 #ifdef _WIN32
@@ -37,7 +42,7 @@ static struct TS3Functions ts3Functions;
 static int wcharToUtf8(const wchar_t* str, char** result) {
 	int outlen = WideCharToMultiByte(CP_UTF8, 0, str, -1, 0, 0, 0, 0);
 	*result = (char*)malloc(outlen);
-	if(WideCharToMultiByte(CP_UTF8, 0, str, -1, *result, outlen, 0, 0) == 0) {
+	if (WideCharToMultiByte(CP_UTF8, 0, str, -1, *result, outlen, 0, 0) == 0) {
 		*result = NULL;
 		return -1;
 	}
@@ -48,9 +53,9 @@ static int wcharToUtf8(const wchar_t* str, char** result) {
 const char* ts3plugin_name() {
 #ifdef _WIN32
 	static char* result = NULL;
-	if(!result) {
+	if (!result) {
 		const wchar_t* name = L"Basic TS3 QT GUI";
-		if(wcharToUtf8(name, &result) == -1) {
+		if (wcharToUtf8(name, &result) == -1) {
 			result = "Basic TS3 QT GUI";
 		}
 	}
@@ -85,6 +90,10 @@ int ts3plugin_init() {
 }
 
 void ts3plugin_shutdown() {
+	if (pluginID) {
+		free(pluginID);
+		pluginID = NULL;
+	}
 }
 
 int ts3plugin_offersConfigure() {
@@ -110,4 +119,56 @@ int ts3plugin_processCommand(uint64 serverConnectionHandlerID, const char* comma
 
 void ts3plugin_freeMemory(void* data) {
 	free(data);
+}
+
+static struct PluginMenuItem* createMenuItem(enum PluginMenuType type, int id, const char* text, const char* icon) {
+	struct PluginMenuItem* menuItem = (struct PluginMenuItem*)malloc(sizeof(struct PluginMenuItem));
+	menuItem->type = type;
+	menuItem->id = id;
+	_strcpy(menuItem->text, PLUGIN_MENU_BUFSZ, text);
+	_strcpy(menuItem->icon, PLUGIN_MENU_BUFSZ, icon);
+	return menuItem;
+}
+
+#define BEGIN_CREATE_MENUS(x) const size_t sz = x + 1; size_t n = 0; *menuItems = (struct PluginMenuItem**)malloc(sizeof(struct PluginMenuItem*) * sz);
+#define CREATE_MENU_ITEM(a, b, c, d) (*menuItems)[n++] = createMenuItem(a, b, c, d);
+#define END_CREATE_MENUS (*menuItems)[n++] = NULL; assert(n == sz);
+
+enum {
+	MENU_ID_GLOBAL_1
+};
+
+void ts3plugin_initMenus(struct PluginMenuItem*** menuItems, char** menuIcon) {
+	BEGIN_CREATE_MENUS(1);
+	CREATE_MENU_ITEM(PLUGIN_MENU_TYPE_GLOBAL, MENU_ID_GLOBAL_1, "Open QT dialog", "1.png");
+	END_CREATE_MENUS;
+}
+
+void ts3plugin_registerPluginID(const char* id) {
+	const size_t sz = strlen(id) + 1;
+	pluginID = (char*)malloc(sz * sizeof(char));
+	_strcpy(pluginID, sz, id);  /* The id buffer will invalidate after exiting this function */
+	printf("PLUGIN: registerPluginID: %s\n", pluginID);
+}
+
+void OpenNewQtDialog()
+{
+	basicdialog* bd = new basicdialog;
+	bd->setAttribute(Qt::WA_DeleteOnClose);
+	bd->exec();
+}
+
+void ts3plugin_onMenuItemEvent(uint64 serverConnectionHandlerID, enum PluginMenuType type, int menuItemID, uint64 selectedItemID)
+{
+	switch (type)
+	{
+	case PLUGIN_MENU_TYPE_GLOBAL:
+		switch (menuItemID) {
+		case MENU_ID_GLOBAL_1:
+		{
+			OpenNewQtDialog();
+		}
+			break;
+		}
+	}
 }
